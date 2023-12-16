@@ -1,0 +1,10 @@
+logging:
+  level:
+    root: info
+spring:
+  config:
+    activate:
+      on-profile: prod
+  output:
+    ansi:
+      enabled: always
