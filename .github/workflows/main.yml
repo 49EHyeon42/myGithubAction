@@ -17,17 +17,10 @@ jobs:
         with:
           java-version: '11'
           distribution: 'zulu'
-          cache: 'gradle'
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2
-      - name: Test with Gradle # 테스트 수행
-        run: ./gradlew --info test
-      - uses: actions/upload-artifact@v3
-        with:
-          name: test
-          path: test
       - name: Execute Gradle build # 테스트를 제외한 빌드
         run: ./gradlew build -x test --no-daemon
       # - name: Send Webhook on Success or Failure
@@ -44,3 +37,18 @@ jobs:
       #         -d "{\"content\": \"Build Failure\"}" \
       #         ${{ secrets.DISCORDE_WEBHOOK_URL}}
       #     fi
+  test:
+    runs-on: ubuntu-22.04
+    needs: build
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          java-version: '11'
+          distribution: 'zulu'
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
+      - name: Test with Gradle # 테스트 수행
+        run: ./gradlew test
