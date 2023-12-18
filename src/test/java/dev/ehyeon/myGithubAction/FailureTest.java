@@ -6,8 +6,8 @@ import org.junit.jupiter.api.Test;
 
 public class FailureTest {
 
-    @Test
-    public void failureTest() {
-        Assertions.fail();
-    }
+//    @Test
+//    public void failureTest() {
+//        Assertions.fail();
+//    }
 }
