@@ -26,17 +26,17 @@ jobs:
         run: ./gradlew --info test
       - name: Execute Gradle build # 테스트를 제외한 빌드
         run: ./gradlew build -x test --no-daemon
-      - name: Send Webhook on Success or Failure
-        if: success() || failure()
-        run: |
-          if [ ${{ success() }} == true ]; then
-            curl -X POST \
-              -H "Content-Type: application/json" \
-              -d "{\"content\": \"Build Success\"}" \
-              ${{ secrets.DISCORDE_WEBHOOK_URL}}
-          else
-            curl -X POST \
-              -H "Content-Type: application/json" \
-              -d "{\"content\": \"Build Failure\"}" \
-              ${{ secrets.DISCORDE_WEBHOOK_URL}}
-          fi
+      # - name: Send Webhook on Success or Failure
+      #   if: success() || failure()
+      #   run: |
+      #     if [ ${{ success() }} == true ]; then
+      #       curl -X POST \
+      #         -H "Content-Type: application/json" \
+      #         -d "{\"content\": \"Build Success\"}" \
+      #         ${{ secrets.DISCORDE_WEBHOOK_URL}}
+      #     else
+      #       curl -X POST \
+      #         -H "Content-Type: application/json" \
+      #         -d "{\"content\": \"Build Failure\"}" \
+      #         ${{ secrets.DISCORDE_WEBHOOK_URL}}
+      #     fi
