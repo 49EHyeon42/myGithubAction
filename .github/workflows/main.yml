@@ -24,6 +24,10 @@ jobs:
         uses: gradle/gradle-build-action@v2
       - name: Test with Gradle # 테스트 수행
         run: ./gradlew --info test
+      - uses: actions/upload-artifact@v3
+        with:
+          name: test
+          path: test
       - name: Execute Gradle build # 테스트를 제외한 빌드
         run: ./gradlew build -x test --no-daemon
       # - name: Send Webhook on Success or Failure
