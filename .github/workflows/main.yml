@@ -60,7 +60,7 @@ jobs:
           path: build/reports/tests/
   depoly:
     runs-on: ubuntu-22.04
-    needs: build
+    needs: test
     steps:
     - name: executing remote ssh commands using ssh key
       uses: appleboy/ssh-action@v1.0.0
@@ -69,4 +69,4 @@ jobs:
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.KEY }}
         port: ${{ secrets.PORT }}
-        script: whoami
+        script: touch file1.txt
